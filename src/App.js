@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import Signin from './pages/Signin';
 import SignUp from './pages/SignUp';
 import CreateListing from './pages/CreateListing';
+import Listing from './pages/Listing';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/create-listing' element={<PrivateRoute />}>
             <Route path="/create-listing" element={<CreateListing />} />
           </Route>
+          <Route path='/category/:categoryName/:listingId' element={<Listing />} />
         </Routes>
         <Navbar />
       </Router>
