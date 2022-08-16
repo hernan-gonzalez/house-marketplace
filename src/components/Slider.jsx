@@ -21,16 +21,15 @@ export default function Slider() {
             const q = query(listingsRef, orderBy('timestamp', 'desc'), limit(5));
             const querySnapshot = await getDocs(q);
 
-            let listings = [];
+            let listingsData = [];
 
             querySnapshot.forEach((doc) => {
-                return listings.push({
+                return listingsData.push({
                     id: doc.id,
                     data: doc.data(),
                 })
             })
-            console.log(listings)
-            setListings(listings);
+            setListings(listingsData);
             setLoading(false);
         }
         fetchListings();
@@ -45,7 +44,7 @@ export default function Slider() {
             <p className="exploreHeading">Recommended </p>
 
             <Swiper className="swiper-container" slidesPerView={1} pagination={{ clickable: true }}>
-                {listings.map((data, id) => (
+                {listings.map(({data, id}) => (
                     < SwiperSlide key={id} onClick={() => navigate(`/category/${data.type}/${id}`)}>
                         <div style={{ background: `url(${data.imageUrls[0]}) center no-repeat`, backgroundSize: 'cover' }} className="swiperSlideDiv">
                             <p className="swiperSlideText">{data.name}</p>
